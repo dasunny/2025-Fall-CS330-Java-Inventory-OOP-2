@@ -81,6 +81,13 @@ public class Armour extends Equippable {
     {
         super.name = snr.next();
 
+        this.material = snr.next();
+        this.durability = snr.nextInt();
+        this.defense = snr.nextInt();
+        this.modifier = snr.next();
+        this.modifierLevel = snr.nextInt();
+        this.element = snr.next();
+
         // Use snr.next() and snr.nextInt() to read in values remaining fields
 
     }
@@ -92,7 +99,7 @@ public class Armour extends Equippable {
     public Item clone()
     {
         // Replace the return
-        return new Armour();
+        return new Armour(this);
     }
 
     /**
@@ -111,7 +118,10 @@ public class Armour extends Equippable {
         Armour rhsItem = (Armour) rhs;
 
         // Replace this return
-        return false;
+        return this.name.equals(rhsItem.name)
+        && this.material.equals(rhsItem.material)
+        && this.modifier.equals(rhsItem.modifier)
+        && this.element.equals(rhsItem.element);
 
     }
 
@@ -123,7 +133,10 @@ public class Armour extends Equippable {
     public int hashCode()
     {
         // Replace this return
-        return -1;
+        return name.hashCode() 
+        + material.hashCode() 
+        + modifier.hashCode() 
+        + element.hashCode();
     }
 
     /**
@@ -132,13 +145,16 @@ public class Armour extends Equippable {
     @Override
     public String toString()
     {
-        return String.join(
-            System.lineSeparator(),
-            String.format("  Refer to..."),
-            String.format("  ...solution for the..."),
-            String.format("  ...previous assignment"),
-            ""
-        );
+        // Complete the String.join sequence
+    return String.join(
+        System.lineSeparator(),
+        String.format("  Nme: %s", super.getName()),
+        String.format("  Dur: %d", this.durability),
+        String.format("  Def: %d", this.defense),
+        String.format("  Mtl: %s", this.material),
+        String.format("  Mdr: %s (Lvl %d)", this.modifier, this.modifierLevel),
+        String.format("  Emt: %s", this.element)
+    ) + System.lineSeparator();
     }
 }
 
